@@ -1,0 +1,27 @@
+{
+  "name": "s23_webblog",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "css-build": "node-sass --omit-source-map-url public/sass/mystyles.scss public/css/mystyles.css",
+    "css-watch": "npm run css-build -- --watch",
+    "dev": "nodemon ./app.js",
+    "start": "npm run css-watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.7"
+  },
+  "dependencies": {
+    "bulma": "^0.9.2",
+    "express-validator": "^6.11.1",
+    "mongoose": "^5.12.5",
+    "node-sass": "^6.0.0",
+    "underscore": "^1.13.1"
+  }
+}

@@ -1,0 +1,12 @@
+@charset "utf-8";
+@import "../../node_modules/bulma/bulma.sass";
+
+.custom-btn{
+    background-color: black ;
+    color: white;
+    >p{
+        font-size: 1.2rem;
+        padding: 0.2rem;
+    }    
+}
+

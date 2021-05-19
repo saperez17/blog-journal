@@ -1,0 +1,10 @@
+<%- include('./partials/header') %>
+
+    <h1>Home</h1>
+    <p><%=homeTxt%></p>
+
+    <% posts.forEach((val)=>{ %>
+        <h3><%=val.title%></h3> 
+        <p class="blog-post-body"><%= under_.unescape(val.content.substring(0,100)+'...') %> <a href="<%=val.url%>">Read more</a></p>
+    <%})%>
+<%- include('./partials/footer') %>
