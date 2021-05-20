@@ -3,6 +3,7 @@ const mongoose = require('mongoose')
 
 var indexRouter = require('./routes/index');
 var postRouter = require('./routes/post')
+var authorRouter = require('./routes/author')
 
 
 
@@ -20,6 +21,7 @@ app.use(express.json())
 app.use(express.static('public'))
 //Add route modules to the middleware chain
 app.use(indexRouter)
+app.use(authorRouter)
 app.use(postRouter)
 
 

@@ -10,7 +10,7 @@ var postController = require('../controllers/postController')
 //in a separate controller module.
 
 //GET request on home page
-router.get('/post', postController.post_list)
+router.get('/post', postController.index_home)
 
 // router.post('/', (req, res)=>{
 //     res.redirect('/')

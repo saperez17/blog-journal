@@ -1,21 +1,35 @@
 var Post = require('../models/post')
+var Author = require('../models/author')
 var _ = require('lodash');
 const { body, validationResult } = require('express-validator');
 var under_ = require('underscore');
+var async = require('async');
 
-const homeStartingContent = "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
+const homeStartingContent = "Welcome to this Journal/Blog website. Here you'll find posts and articles revolving around the IT world. For now I'll be the main site contributor. I'll be blogging about front-end development, best coding practices, practical tutorials and hopefully much more. Nice to have you around. Have fun & enjoy!";
 const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
 const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 
 
 //Display list of all Posts
-exports.post_list = async function (req, res) {
-    const blogPosts = await Post.find({});
-    res.render('home', {
-        homeTxt: homeStartingContent,
-        posts: blogPosts,
-        under_:under_
-    })
+exports.index_home = async function (req, res) {
+
+    async.parallel({
+        post_count: function(callback){
+            Post.countDocuments({}, callback);
+        },
+        blog_posts: function(callback){
+            Post.find({}, callback);
+        },
+        author_count: function(callback){
+            Author.countDocuments({}, callback);
+        },
+    }, function(err, results){
+        res.render('home', {
+            homeTxt: homeStartingContent,
+            data: results,
+            under_:under_
+        })
+    });
 };
 
 //Display detail page for a specific Post
