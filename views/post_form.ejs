@@ -1,28 +1,43 @@
 <%- include('./partials/header') %>
+    <%- include('./partials/left-panel') %>
 
-<%if (locals.errors) {%>
-    <% errors.forEach((error)=>{ %>
-        <div class="notification is-danger">
-
-            <%=error.msg%>
-            
-          </div>
-    <%})%>
-<%}%>
-<h1><%=title%></h1>
-<form action="" method="POST">
-    <div class="mb-3">
-        <label for="postTitle" class="form-label">Title</label>
-        <input type="text" name="postTitle" value="<%=typeof post!='undefined'?post.title:'' %>" id="postTitle" class="form-control" aria-describedby="postTitleHelp">
-    </div>
+<div class="column is-8-desktop">
+    <%if (locals.errors) {%>
+        <% errors.forEach((error)=>{ %>
+            <div class="notification is-danger">
     
-    <div class="mb-3">
-        <label for="postBody" class="form-label">Content</label>
-        <textarea name="postBody" id="postBody" cols="30" rows="10" class="form-control"><%=typeof post!='undefined'? under_.unescape(post.content):''%></textarea>
-    </div>
-    <div class="">
-        <button class="btn btn-primary ">Publish</button>
-    </div>
-</form>
+                <%=error.msg%>
+                
+              </div>
+        <%})%>
+    <%}%>
+    <h1><%=title%></h1>
+    <form action="" method="POST">
+        <div class="mb-3">
+            <label for="postTitle" class="form-label">Title</label>
+            <input type="text" name="postTitle" value="<%=typeof post!='undefined'?post.title:'' %>" id="postTitle" class="form-control" aria-describedby="postTitleHelp">
+        </div>
+        
+        <div class="mb-3">
+            <label for="postBody" class="form-label">Content</label>
+            <textarea name="postBody" id="postBody" cols="30" rows="10" class="form-control"><%=typeof post!='undefined'? under_.unescape(post.content):''%></textarea>
+        </div>
 
+        <div class="block">
+            <label for="author">Choose an Author:</label>
+            <select name="author" id="author">
+                <% authors.forEach(author => { %>
+                 <option value=<%= author._id %>> <%= author.fullname %> </option>
+                <% }) %>
+            </select>
+        </div>
+
+        <div class="">
+            <button class="btn btn-primary ">Publish</button>
+        </div>
+    </form>
+</div>
+
+
+   
 <%- include('./partials/footer') %>

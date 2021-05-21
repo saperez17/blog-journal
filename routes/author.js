@@ -16,6 +16,9 @@ var authorController = require('../controllers/authorController')
 //     res.redirect('/')
 // })
 
+//GET requests on displaying list of authors
+router.get('/author', authorController.author_list)
+
 // GET request on creating a new Author
 router.get('/author/create', authorController.author_create_get)
 

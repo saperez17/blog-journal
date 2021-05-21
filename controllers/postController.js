@@ -9,7 +9,6 @@ const homeStartingContent = "Welcome to this Journal/Blog website. Here you'll f
 const aboutContent = "Hac habitasse platea dictumst vestibulum rhoncus est pellentesque. Dictumst vestibulum rhoncus est pellentesque elit ullamcorper. Non diam phasellus vestibulum lorem sed. Platea dictumst quisque sagittis purus sit. Egestas sed sed risus pretium quam vulputate dignissim suspendisse. Mauris in aliquam sem fringilla. Semper risus in hendrerit gravida rutrum quisque non tellus orci. Amet massa vitae tortor condimentum lacinia quis vel eros. Enim ut tellus elementum sagittis vitae. Mauris ultrices eros in cursus turpis massa tincidunt dui.";
 const contactContent = "Scelerisque eleifend donec pretium vulputate sapien. Rhoncus urna neque viverra justo nec ultrices. Arcu dui vivamus arcu felis bibendum. Consectetur adipiscing elit duis tristique. Risus viverra adipiscing at in tellus integer feugiat. Sapien nec sagittis aliquam malesuada bibendum arcu vitae. Consequat interdum varius sit amet mattis. Iaculis nunc sed augue lacus. Interdum posuere lorem ipsum dolor sit amet consectetur adipiscing elit. Pulvinar elementum integer enim neque. Ultrices gravida dictum fusce ut placerat orci nulla. Mauris in aliquam sem fringilla ut morbi tincidunt. Tortor posuere ac ut consequat semper viverra nam libero.";
 
-
 //Display list of all Posts
 exports.index_home = async function (req, res) {
 
@@ -39,9 +38,10 @@ exports.post_detail = async function (req, res) {
         _id: {
             $eq: postId
         }
-    })
+    }).populate('author')
+    console.log(postData)
     if (postData.length != 0) {
-        postData[0].content = under_.unescape(postData[0].content)
+        
         res.render('post_detail', {
             postRes: postData[0],
             title: '',
@@ -59,7 +59,22 @@ exports.post_detail = async function (req, res) {
 
 //Display Post create form on GET request
 exports.post_create_get = function(req, res){
-    res.render('post_form', {title:'New Post'})
+    async.parallel({
+        authors: function(callback){
+            Author.find({}, callback)       
+        },
+    },
+    function(err, results){
+        res.render('post_form', {
+            homeTxt: homeStartingContent,
+            title: 'New Post',
+            data: results,
+            authors:results.authors,
+            under_:under_
+        })
+    })
+
+    // res.render('post_form', {title:'New Post'})
 }
 
 //Handle Post create form on POST request
@@ -67,21 +82,23 @@ exports.post_create_post = [
     // Validate and sanitize the title field
     body('postTitle', 'Title required').trim().isLength({min: 1}).escape(),
     body('postBody', 'Content required').trim().isLength({min: 1}).escape(),
-
+    body('author', 'Content required').trim().isLength({min: 1}).escape(),
     //Process request after validation and sanitation
-    (req, res, next)=>{
+    async (req, res, next)=>{
         //Extract the validation errors from a request
         const errors = validationResult(req);
-
+        console.log(req.body)
         //Check there were no validation errors 
         if (!errors.isEmpty()){
             //There are errors. Render the create Post form again with sanitized values/errors messages.
-            res.render('post_form',{title:'New Post', post:req.body, errors: errors.array()})
+            var authors = await Author.find({})
+            res.render('post_form',{title:'New Post', post:req.body, errors: errors.array(), under_:under_, authors:authors})
         }else{
             //No validation errors. Create a new Post with escaped and trimmed data.
             var post = new Post({
                 title: req.body.postTitle,
-                content: req.body.postBody
+                content: req.body.postBody,
+                author: req.body.author
             })
             post.save(function(err){
                 if (err) { return next(err); }

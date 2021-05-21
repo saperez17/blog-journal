@@ -1,54 +1,19 @@
 <%- include('./partials/header') %>
+    <%- include('./partials/left-panel') %>
 
-<div class="columns">
-    <div class="column is-2-desktop">
-       <div class="is-flex is-flex-direction-column">
-        <input class="input" type="text" placeholder="Serch">
-        <div class="block">
-            <h3 class="is-size-5">Topics</h3>
-            <ul class="right-panel-list">
-                <li class="">Express</li>
-                <li class="">React</li>
-                <li class="">Django</li>
-            </ul>
-        </div>
-
-        <div class="block">
-            <h3 class="is-size-5">Creation</h3>
-            <ul>
-                <li><a href="/author/create">Author</a></li>
-                <li><a href="/post/create">Article</a></li>
-            </ul>
-        </div>
-        
-       </div>
-    </div>
-    <div class="column is-8-desktop">
+<div class="column is-8-desktop">
+    <div class="block">
         <h1>Home</h1>
-        <p><%=homeTxt%></p>
-    
-        <% data.blog_posts.forEach((val)=>{ %>
-            <h3><%=val.title%></h3> 
-            <p class="blog-post-body"><%= under_.unescape(val.content.substring(0,100)+'...') %> <a href="<%=val.url%>">Read more</a></p>
-        <%})%>
+    <p><%=homeTxt%></p>
     </div>
-    <div class="column is-2-desktop">
-        <div class="message is-primary">
-            <div class="message-header">
-                <p>Site stats</p>
-            </div>
-            <div class="message-body">
-                <ul>
-                    <li>
-                        Blogs/Articles: <strong><%=data.post_count%></strong>
-                    </li>
-                    <li>
-                        Authors: <strong><%=data.author_count%></strong> 
-                    </li>
-                </ul>
-            </div>
+    <div><p class="is-size-4 is-flex is-justify-content-center is-align-items-center">Latest Posts</p></div>
+    <% data.blog_posts.forEach((val)=>{ %>
+        <div class="block">
+            <h3 class="is-size-5"><%=val.title%></h3> 
+        <p class="is-size-6"><%= under_.unescape(val.content.substring(0,100)+'...') %> <a href="<%=val.url%>">Read more</a></p>
         </div>
-    </div>
+    <%})%>
 </div>
-    
+
+    <%- include('./partials/right-panel') %>
 <%- include('./partials/footer') %>

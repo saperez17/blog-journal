@@ -7,6 +7,7 @@ const AuthorSchema = new Schema({
     lastName: String,
     country: String,
     languages: [{type: String}],
+    description: String
 });
 
 AuthorSchema
@@ -18,7 +19,7 @@ AuthorSchema
 AuthorSchema
 .virtual('fullname')
 .get(function(){
-    return `${this.first_name} ${this.last_name}`
+    return `${this.firstName} ${this.lastName}`
 })
 
 // Export model

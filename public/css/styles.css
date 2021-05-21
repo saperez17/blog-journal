@@ -52,14 +52,16 @@ label{
     color: #fff;
 }
 .footer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
+    /* justify-content: center; */
+    /* align-items: center; */
     position: absolute;
     bottom: 0px;
-    height: 10vh !important;
-    padding: 3rem 0rem;
-    
+    height: 7vh !important;
+    padding: 0 !important;
+}
+.footer > div{
+    padding: 0rem !important ;
 }
 
 .blog-post-body{

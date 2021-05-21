@@ -1,61 +1,63 @@
 <%- include('./partials/header') %>
+<%- include('./partials/left-panel') %>
 
-<%if (locals.errors) {%>
-    <% errors.forEach((error)=>{ %>
-        <div class="notification is-danger">
-            <%=error.msg%>
-          </div>
-    <%})%>
-<%}%>
-<h1><%=title%></h1>
-<form action="" method="POST">
-    <div class="mb-3">
-        <label for="authorFirstName" class="form-label">First Name</label>
-        <input type="text" name="authorFirstName" value="<%=typeof author!='undefined'?author.firstName:'' %>" id="authorFirstName" class="form-control" aria-describedby="Author First Name">
-    </div>
-
-    <div class="mb-3">
-        <label for="authorLastName" class="form-label">Last Name</label>
-        <input type="text" name="authorLastName" value="<%=typeof author!='undefined'?author.lastName:'' %>" id="authorLastName" class="form-control" aria-describedby="Author Last Name">
-    </div>
-
-    <div class="mb-3">
-        <div class="dropdown">
-            <div class="dropdown-trigger">
-              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
-                <span>Country</span>
-                <span class="icon is-small">
-                  <i class="fas fa-angle-down" aria-hidden="true"></i>
-                </span>
-              </button>
+<div class="column is-8-desktop">
+  <%if (locals.errors) {%>
+      <% errors.forEach((error)=>{ %>
+          <div class="notification is-danger">
+              <%=error.msg%>
             </div>
-            <div class="dropdown-menu" id="dropdown-menu3" role="menu">
-              <div class="dropdown-content">
-                <a href="#" class="dropdown-item">
-                  Colombia
-                </a>
-                <a href="#" class="dropdown-item">
-                  Germany
-                </a>
-                <a href="#" class="dropdown-item">
-                  Brazil
-                </a>
+      <%})%>
+  <%}%>
+  <h1><%=title%></h1>
+  <form action="" method="POST">
+      <div class="mb-3">
+          <label for="authorFirstName" class="form-label">First Name</label>
+          <input type="text" name="authorFirstName" value="<%=typeof author!='undefined'?author.firstName:'' %>" id="authorFirstName" class="form-control" aria-describedby="Author First Name">
+      </div>
+
+      <div class="mb-3">
+          <label for="authorLastName" class="form-label">Last Name</label>
+          <input type="text" name="authorLastName" value="<%=typeof author!='undefined'?author.lastName:'' %>" id="authorLastName" class="form-control" aria-describedby="Author Last Name">
+      </div>
+
+      <div class="mb-3">
+          <div class="dropdown is-hoverable">
+              <div class="dropdown-trigger">
+                <button type="button" class="button" aria-haspopup="true" aria-controls="dropdown-menu3">
+                  <span>Country</span>
+                  <span class="icon is-small">
+                    <i class="fas fa-angle-down" aria-hidden="true"></i>
+                  </span>
+                </button>
+              </div>
+              <div class="dropdown-menu" id="dropdown-menu3" role="menu">
+                <div class="dropdown-content ">
+                  <a href="#" class="dropdown-item">
+                    <input class="mr-1" type="checkbox" name="authorCountry" value="Colombia">Colombia<br>   
+                  </a>
+                  <a href="#" class="dropdown-item">
+                    <input class="mr-1" type="checkbox" name="authorCountry" value="Germany">Germany<br> 
+                  </a>
+                  <a href="#" class="dropdown-item">
+                    <input class="mr-1" type="checkbox" name="authorCountry" value="Brazil">Brazil<br> 
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-    </div>
-    <div class="mb-3">
-        <fieldset>      
-            <legend>Language</legend>      
-            <input type="checkbox" name="authorLanguage" value="Spanish">Spanish<br>      
-            <input type="checkbox" name="authorLanguage" value="English">English<br>      
-            <input type="checkbox" name="authorLanguage" value="Portuguese">Portuguese<br>      
-            <input type="checkbox" name="authorLanguage" value="German">German<br>            
-        </fieldset>      
-    </div>
-    <div class="">
-        <button class="btn btn-primary" type="submit">Publish</button>
-    </div>
-</form>
+      </div>
+      <div class="mb-3">
+          <fieldset>      
+              <legend>Language</legend>      
+              <input class="mr-1" type="checkbox" name="authorLanguage" value="Spanish">Spanish<br>      
+              <input class="mr-1" type="checkbox" name="authorLanguage" value="English">English<br>      
+              <input class="mr-1" type="checkbox" name="authorLanguage" value="Portuguese">Portuguese<br>      
+              <input class="mr-1" type="checkbox" name="authorLanguage" value="German">German<br>            
+          </fieldset>      
+      </div>
+
+          <button class="btn btn-primary" type="submit">Publish</button>
+  </form>
+</div>
 
 <%- include('./partials/footer') %>

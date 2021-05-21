@@ -1,0 +1,26 @@
+<%- include('./partials/header') %>
+<%- include('./partials/left-panel') %>
+
+<div class="column is-8-desktop">
+ <div class="block ">
+        <div class="is-flex is-flex-direction-row  is-align-items-center">
+            <figure class="image is-96x96">
+                <img src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
+            </figure>
+
+            <div class="block content is-flex-direction-row ml-2">
+                <div class="fullname">
+                    <a href="/author/<%= author.firstName %> "><p class="is-size-5"><%=author.lastName %> </p></a>
+                </div>
+                <div class="block country">
+                    <p class="is-size-6"><%=author.country%></p>
+                </div>
+                <div class="block">
+                    <p><%= author.country %> </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer') %>
