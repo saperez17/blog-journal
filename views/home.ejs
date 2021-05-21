@@ -1,18 +1,47 @@
 <%- include('./partials/header') %>
     <%- include('./partials/left-panel') %>
 
-<div class="column is-8-desktop">
+<div class="column is-9-desktop px-6">
     <div class="block">
-        <h1>Home</h1>
-    <p><%=homeTxt%></p>
-    </div>
-    <div><p class="is-size-4 is-flex is-justify-content-center is-align-items-center">Latest Posts</p></div>
-    <% data.blog_posts.forEach((val)=>{ %>
-        <div class="block">
-            <h3 class="is-size-5"><%=val.title%></h3> 
-        <p class="is-size-6"><%= under_.unescape(val.content.substring(0,100)+'...') %> <a href="<%=val.url%>">Read more</a></p>
+        <div class="home-title is-flex is-align-items-center is-justify-content-center">
+            LATEST ARTICLES
         </div>
-    <%})%>
+    <p></p>
+    </div>
+    
+    <div class="articles-wrapper is-flex is-flex-direction-column">
+        <% data.blog_posts.forEach((val)=>{ %>
+        <div class="block article-card" onclick="window.location.href = '/post/<%= val._id %>'" data-id="<%= val._id %> ">
+            <div class="article-media">
+            </div>
+            <div class="article-body is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+                <div class="title">
+                    <%=val.title%>
+                </div>
+                <div class="description">
+                    <p><%= under_.unescape(val.content.substring(0,100)+'...') %> </p>
+                </div>
+                <div class="stats">
+                    <span class="icon">
+                        <i class="far fa-clock"></i>
+                        5 min
+                    </span>
+                    <span class="icon">
+                        <i class="fas fa-heart"></i>
+                        150
+                      </span>
+                    <span class="icon">
+                        <i class="far fa-comment"></i>
+                        17
+                    </span>
+                </div>
+            </div>
+        </div>
+        <%})%>
+    </div>
+    
+     
+   
 </div>
 
     <%- include('./partials/right-panel') %>

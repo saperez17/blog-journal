@@ -1,5 +1,6 @@
 @charset "utf-8";
 @import "../../node_modules/bulma/bulma.sass";
+@import url('https://fonts.googleapis.com/css2?family=Blinker:wght@600;700;800;900&family=Chela+One&display=swap');
 
 .custom-btn{
     background-color: black ;
@@ -10,3 +11,153 @@
     }    
 }
 
+
+$font-dark: rgb(29, 29, 29);
+
+.dropdown-item{
+    letter-spacing: 0.1rem;
+}
+
+
+.home-title{
+    position: relative;
+    font-size: 2.7vw;
+
+    &:before{
+        position: absolute;
+        display: inline-block;
+        content: "";
+        width: 20%;
+        height: 10%;
+        background-color: rgb(71, 71, 71);
+        border-radius: 10px;
+        left: 0;
+    }
+    &:after{
+        position: absolute;
+        display: inline-block;
+        content: "";
+        width: 20%;
+        height: 10%;
+        background-color: rgb(71, 71, 71);
+        border-radius: 10px;
+        right: 0;
+    }
+}
+
+// TOP CATEGORIES SECTION
+.categories-wrapper{
+    // height: 30vh;
+    display: flex;
+    width: 100%;
+
+    > .category{
+        height: 35vh;
+        margin: 0.5rem;
+        >figure{
+            height: 35vh;
+            width: 20vw;
+            position: relative;
+            > .img{
+                position: absolute;
+                height: 100%;
+                width: 100%;
+                background-repeat: no-repeat;
+                background-size: cover, cover;
+                background-position: bottom center;
+            }
+            > figcaption{
+                position: absolute;
+                bottom: 0.5rem;
+                color: white !important;
+                text-align: center;
+                width: 100%;
+                >.action-tag{
+                    font-size: 1vw;
+                    background-color: #ffd420;
+                    border: none;
+                    padding: 0.2rem 0.5rem;
+                    text-transform:uppercase;
+                    color: rgb(29, 29, 29);
+                }
+                >.category-title{
+                    font-size: 1.8vw;
+                    text-transform:uppercase;
+                    font-family: 'Blinker', sans-serif;
+                    font-weight: 800;
+                }
+                >.icons{
+                    width: 100%;
+                    >.icon{
+                        padding: 0.2rem 2rem;
+                        > i{
+                        }
+                    }
+                }
+            }
+            
+        }
+    }
+}
+.express-cat > figure > .img{
+    background-image: linear-gradient(0deg, rgb(87, 87, 87) 0%, rgba(255,255, 255, 0) 48%),url('/assets/express.jpg');
+}
+.react-cat > figure > .img{
+    background-image: linear-gradient(0deg, rgb(87, 87, 87) 0%, rgba(255,255, 255, 0) 48%),url('/assets/react.jpg');
+}
+.django-cat > figure > .img{
+    background-image: linear-gradient(0deg, rgb(87, 87, 87) 0%, rgba(255,255, 255, 0) 48%),url('/assets/django.jpg');
+}
+.mongo-cat > figure > .img{
+    background-image: linear-gradient(0deg, rgb(87, 87, 87) 0%, rgba(255,255, 255, 0) 48%),url('/assets/MongoDB.gif');
+}
+
+
+// ARTICLE CARD
+.article-card{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 1fr;
+    height: 20vh;
+    &:hover{
+        cursor:pointer;
+    }
+
+    >.article-media{
+    background-color: #363062;
+    }
+    >.article-body{
+        >.title{
+            font-size: 2.2vw;
+        }
+        >.description{
+            font-size: 1.5vw;
+            padding: 0 2rem;
+        }
+        >.stats > span{
+            margin: 0.5rem 1rem;
+            width: 5vw;
+            > *{
+                padding-left: 0.2rem;
+                margin-right: 0.3rem;
+            }
+        }
+    }
+}
+
+
+.tile{
+    >.img{
+        display: inline-block;
+        // height: 25vh;
+        width: 100%;
+        >img{
+            width: 80%;
+            height: auto;
+        }
+    }
+}
+
+hr{
+    background-color: #656565;
+}

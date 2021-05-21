@@ -1,5 +1,45 @@
-<div class="column is-2-desktop">
-    <div class="message is-primary">
+<div class="column is-3-desktop">
+    <div class="tile is-ancestor">
+        <div class="tile is-vertical is-parent">
+
+            <div class="tile is-child tile1 ">
+                <div class="img is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+                    <img src="/assets/undraw_Coding_re_iv62.png" alt="" >
+                </div>
+                <div class="is-flex is-flex-direction-column is-justify-content-center is-align-items-center">
+                    <p class="">
+                        Programming Adivce
+                    </p>
+                    <button class="button is-light">Read</button>
+                </div>
+                <!-- <p class="subtitle">Find personal advice on how to improve..</p> -->
+            </div>
+            <hr> 
+
+            <div class="tile is-child ">
+                <div class="">
+                    <span class="icon ml-5" style="font-size: 1.5rem;">
+                        <i class="far fa-chart-bar"></i>
+                        Stats
+                    </span>
+                </div>
+                
+                <ul>
+                    <li>
+                        <p>Blogs/Articles: <strong><%=data.post_count%></strong></p>
+                    </li>
+                    <li>
+                        <p>Authors: <strong><%=data.author_count%></strong> </p>
+                    </li>
+                </ul>
+              </div>
+
+             
+        </div>
+       
+      </div>
+
+    <!-- <div class="message is-primary">
         <div class="message-header">
             <p>Site stats</p>
         </div>
@@ -13,5 +53,5 @@
                 </li>
             </ul>
         </div>
-    </div>
+    </div> -->
   </div>
