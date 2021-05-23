@@ -12,8 +12,8 @@
 
 var articleCards = $(".article-card");
 
-articleCards.each(function(idx, val){
-   $(val).click(()=>{
-       console.log($(val)[0].dataset)
-   })
-});
+// articleCards.each(function(idx, val){
+//    $(val).click(()=>{
+//        location.href = 
+//    })
+// });

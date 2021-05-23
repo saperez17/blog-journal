@@ -124,7 +124,8 @@ exports.post_create_post = [
 //Display Post update form on GET request
 exports.post_update_get = async function(req, res){
     const post = await Post.findById(req.params.postId)
-    res.render('post_form', {post:post, title:'Update Post', under_:under_})
+    var authors = await Author.find({})
+    res.render('post_form', {post:post, title:'Update Post', under_:under_, authors:authors})
 }
 
 //Handle Post update form on POST request
